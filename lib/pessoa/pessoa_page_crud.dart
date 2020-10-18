@@ -10,18 +10,18 @@ class PessoaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PessoaController controller = PessoaController();
+    // PessoaController controller = PessoaController();
     return ListView(
       padding: const EdgeInsets.all(8),
       children: [
-        Padding(
+        /*Padding(
           padding: const EdgeInsets.only(bottom: 8),
           child: TextField(
             onChanged: controller.setNome,
             decoration: InputDecoration(
                 labelText: "Nome", errorText: controller.nomeError),
-          ),
-        ),
+          ), 
+        ),*/
       ],
     );
   }

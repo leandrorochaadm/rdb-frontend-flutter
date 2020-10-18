@@ -4,19 +4,34 @@ import 'package:rdb/pessoa/pessoa_controller.dart';
 import 'package:rdb/pessoa/pessoa_widget_tile.dart';
 
 class PessoaPageList extends StatelessWidget {
-  const PessoaPageList({Key key}) : super(key: key);
+  const PessoaPageList(this.controller, {Key key}) : super(key: key);
 
   static final tag = "pessoa_list";
+  final PessoaController controller;
 
   @override
   Widget build(BuildContext context) {
-    PessoaController controller = PessoaController();
-    return Material(
-      child: Observer(builder: (_) {
-        return ListView(
-            padding: const EdgeInsets.all(8),
-            children:
-                controller.listPessoas.map((e) => PessoaTile(e)).toList());
+    return Scaffold(
+      body: Observer(builder: (_) {
+        var list = controller.listPessoas;
+
+        if (list.error != null) {
+          return Center(
+            child: Text("Ocorreu um erro"),
+          );
+        }
+
+        if (list.value == null) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        return ListView.builder(
+          itemCount: list.value.length,
+          itemBuilder: (_, index) {
+            var pessoa = list.value[index];
+            return PessoaTile(pessoa);
+          },
+        );
       }),
     );
   }

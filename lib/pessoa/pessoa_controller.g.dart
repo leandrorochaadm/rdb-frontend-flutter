@@ -17,6 +17,21 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
               name: '_PessoaControllerBase.nomeIsValid'))
           .value;
 
+  final _$listPessoasAtom = Atom(name: '_PessoaControllerBase.listPessoas');
+
+  @override
+  ObservableFuture<List<PessoaModel>> get listPessoas {
+    _$listPessoasAtom.reportRead();
+    return super.listPessoas;
+  }
+
+  @override
+  set listPessoas(ObservableFuture<List<PessoaModel>> value) {
+    _$listPessoasAtom.reportWrite(value, super.listPessoas, () {
+      super.listPessoas = value;
+    });
+  }
+
   final _$_nomeAtom = Atom(name: '_PessoaControllerBase._nome');
 
   @override
@@ -36,6 +51,17 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
       ActionController(name: '_PessoaControllerBase');
 
   @override
+  void setListPessoas() {
+    final _$actionInfo = _$_PessoaControllerBaseActionController.startAction(
+        name: '_PessoaControllerBase.setListPessoas');
+    try {
+      return super.setListPessoas();
+    } finally {
+      _$_PessoaControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setNome(String value) {
     final _$actionInfo = _$_PessoaControllerBaseActionController.startAction(
         name: '_PessoaControllerBase.setNome');
@@ -49,6 +75,7 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
   @override
   String toString() {
     return '''
+listPessoas: ${listPessoas},
 nomeIsValid: ${nomeIsValid}
     ''';
   }

@@ -7,14 +7,17 @@ part 'pessoa_controller.g.dart';
 class PessoaController = _PessoaControllerBase with _$PessoaController;
 
 abstract class _PessoaControllerBase with Store {
-  _PessoaControllerBase() {
-    final PessoaRepository repository = PessoaRepository();
+  final PessoaRepository repository;
+
+  _PessoaControllerBase(this.repository) {
+    setListPessoas();
   }
+
   @observable
-  List<PessoaModel> listPessoas = [
-    PessoaModel(email: "adsf@asdf.com", nome: "adfad"),
-    PessoaModel(email: "poipi@asdf.com", nome: "poipi"),
-  ];
+  ObservableFuture<List<PessoaModel>> listPessoas;
+
+  @action
+  void setListPessoas() => listPessoas = repository.getPessoa().asObservable();
 
   @observable
   String _nome = '';

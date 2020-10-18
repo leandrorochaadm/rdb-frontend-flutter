@@ -1,8 +1,6 @@
 import 'package:mobx/mobx.dart';
 
 import 'pessoa_model.dart';
-import 'pessoa_model.dart';
-import 'pessoa_repository.dart';
 import 'pessoa_repository.dart';
 part 'pessoa_controller.g.dart';
 
@@ -14,8 +12,8 @@ abstract class _PessoaControllerBase with Store {
   }
   @observable
   List<PessoaModel> listPessoas = [
-    PessoaModel(email: "adsf@asdf.com"),
-    PessoaModel(email: "poipi@asdf.com"),
+    PessoaModel(email: "adsf@asdf.com", nome: "adfad"),
+    PessoaModel(email: "poipi@asdf.com", nome: "poipi"),
   ];
 
   @observable

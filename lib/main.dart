@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'pessoa/pessoa_page_crud.dart';
+import 'package:rdb/pessoa/pessoa_page_list.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,12 +10,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Rueiros do Bem',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.orange,
         ),
-        initialRoute: PessoaPage.tag,
+        initialRoute: PessoaPageList.tag,
         routes: {
-          PessoaPage.tag: (context) => PessoaPage(),
+          PessoaPageList.tag: (context) => PessoaPageList(),
         });
   }
 }

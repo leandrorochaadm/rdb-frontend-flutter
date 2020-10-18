@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pessoa/pessoa_page.dart';
+import 'pessoa/pessoa_page_crud.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Rueiros do Bem',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.orange,
         ),
         initialRoute: PessoaPage.tag,
         routes: {

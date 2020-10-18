@@ -41,4 +41,9 @@ class PessoaModel {
 
   factory PessoaModel.fromJson(String source) =>
       PessoaModel.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return "nome: $nome, email: $email, telefone: $telefone";
+  }
 }

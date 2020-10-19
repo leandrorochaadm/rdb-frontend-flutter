@@ -73,9 +73,10 @@ abstract class _PessoaControllerBase with Store {
       nomeIsValid && emailIsValid && senhaIsValid && telefoneIsValid;
 
   @action
-  Future<void> SavePessoa() async {
+  Future<bool> savePessoa() async {
+    var status = false;
     if (allValid) {
-      await repository.setPessoa(PessoaModel(
+      status = await repository.setPessoa(PessoaModel(
         email: _email,
         //id: null,
         nome: _nome,
@@ -84,5 +85,14 @@ abstract class _PessoaControllerBase with Store {
       ));
       await setListPessoas();
     }
+    return status;
+  }
+
+  @action
+  Future<bool> deletePessoa(PessoaModel pessoa) async {
+    var status = false;
+    status = await repository.deletePessoa(pessoa);
+    await setListPessoas();
+    return status;
   }
 }

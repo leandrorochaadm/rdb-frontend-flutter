@@ -22,9 +22,10 @@ class _PessoaPageCrudState extends State<PessoaPageCrud> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.SavePessoa();
-          Navigator.pop(context);
+        onPressed: () async {
+          if (await controller.savePessoa()) {
+            Navigator.pop(context);
+          }
         },
         child: Icon(Icons.save),
       ),

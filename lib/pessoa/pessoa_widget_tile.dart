@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rdb/pessoa/pessoa_controller.dart';
 import 'package:rdb/pessoa/pessoa_model.dart';
 
 class PessoaTile extends StatelessWidget {
@@ -7,7 +9,11 @@ class PessoaTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PessoaController controller = Provider.of(context);
     return ListTile(
+      onLongPress: () {
+        controller.deletePessoa(pessoa);
+      },
       title: Text(
         pessoa.nome,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

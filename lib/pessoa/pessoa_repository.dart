@@ -30,4 +30,10 @@ class PessoaRepository {
       return false;
     }
   }
+
+  Future<bool> deletePessoa(PessoaModel pessoa) async {
+    print("delete: $pessoa");
+    Response response =
+        await dio.delete('http://localhost:8080/pessoas/${pessoa.id}');
+  }
 }

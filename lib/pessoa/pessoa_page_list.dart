@@ -22,9 +22,7 @@ class _PessoaPageListState extends State<PessoaPageList> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            Navigator.of(context).pushNamed(PessoaPageCrud.tag);
-          });
+          Navigator.of(context).pushNamed(PessoaPageCrud.tag);
         },
         child: Icon(Icons.add),
       ),

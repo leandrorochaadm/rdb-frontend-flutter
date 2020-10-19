@@ -135,12 +135,20 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
     return _$setListPessoasAsyncAction.run(() => super.setListPessoas());
   }
 
-  final _$SavePessoaAsyncAction =
-      AsyncAction('_PessoaControllerBase.SavePessoa');
+  final _$savePessoaAsyncAction =
+      AsyncAction('_PessoaControllerBase.savePessoa');
 
   @override
-  Future<void> SavePessoa() {
-    return _$SavePessoaAsyncAction.run(() => super.SavePessoa());
+  Future<bool> savePessoa() {
+    return _$savePessoaAsyncAction.run(() => super.savePessoa());
+  }
+
+  final _$deletePessoaAsyncAction =
+      AsyncAction('_PessoaControllerBase.deletePessoa');
+
+  @override
+  Future<bool> deletePessoa(PessoaModel pessoa) {
+    return _$deletePessoaAsyncAction.run(() => super.deletePessoa(pessoa));
   }
 
   final _$_PessoaControllerBaseActionController =

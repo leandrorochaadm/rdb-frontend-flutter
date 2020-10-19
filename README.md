@@ -1,16 +1,51 @@
-# rdb
+# projeto rdb-frontend-flutter
 
-A new Flutter project.
+Este projeto usa Flutter, um framework da linguagem Dart.
 
-## Getting Started
+## Pre requisitos
+* Dart 2.11
+* Flutter 1.23
 
-This project is a starting point for a Flutter application.
+Se você quiser saber mais sobre a Flutter, visite seu site: http://flutter.dev/.
 
-A few resources to get you started if this is your first Flutter project:
+## Executando o aplicativo
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Você pode executar seu aplicativo em qualquer sistema operacional com ambiente de desolvimento configurado, por exemplo Android, iOS, Linux, Windows e MacOS. Usando o comando: 
+```
+flutter run
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+O aplicativo para ser usado é necessário o servidor (backend) rodando no endpoint `http:\\localhost:8080`. Veja sobre o backend nesse link https://github.com/leandrorochaadm/rdb-backend-quarkus
+
+## Criação de um executável nativo Windows
+
+É necessário configurar o ambiente:
+ ```
+ flutter config --enable-windows-desktop
+ ```
+
+Você pode criar um executável nativo usando 
+```
+flutter build windows
+```
+
+Ele produz o arquivo `rdb.exe` no diretório `\build\windows\runner\Release`.
+Esteja ciente de que não é um único executavel, pois as dependências e dll estão no diretório `\build\windows\runner\Release`.
+
+
+
+## Criação de um executável nativo Linux
+
+É necessário configurar o ambiente 
+```
+flutter config --enable-linux-desktop
+````
+
+Você pode criar um executável nativo usando 
+```
+flutter build linux
+```
+
+
+
+Se você quiser saber mais sobre como construir executáveis ​​nativos, consulte https://flutter.dev/desktop.

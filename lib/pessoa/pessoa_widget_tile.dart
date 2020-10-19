@@ -8,8 +8,23 @@ class PessoaTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(pessoa.nome),
-      subtitle: Text(pessoa.email),
+      title: Text(
+        pessoa.nome,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      ),
+      subtitle: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            pessoa.email,
+            style: TextStyle(fontStyle: FontStyle.italic),
+          ),
+          Text(
+            pessoa.telefone,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -15,17 +15,19 @@ class PessoaRepository {
       list.add(PessoaModel.fromMap(json));
       //print(json);
     }
+    //  print("repository: $list");
     return list;
   }
 
-  Future<PessoaModel> setPessoa(PessoaModel pessoa) async {
+  Future<bool> setPessoa(PessoaModel pessoa) async {
     print("Salvar pessoa: ${pessoa.toString()}");
     try {
       Response response = await dio.post('http://localhost:8080/pessoas',
           data: pessoa.toJson());
-      return PessoaModel.fromJson(response.data);
+      return response.statusCode == 201;
     } catch (e) {
       print("Erro post pessoa: $e");
+      return false;
     }
   }
 }

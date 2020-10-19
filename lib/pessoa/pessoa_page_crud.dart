@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:rdb/pessoa/pessoa_controller.dart';
 
-class PessoaPageCrud extends StatelessWidget {
-  const PessoaPageCrud(this.controller, {Key key}) : super(key: key);
+class PessoaPageCrud extends StatefulWidget {
+  const PessoaPageCrud({Key key}) : super(key: key);
 
   static final tag = "pessoaCrud";
-  final PessoaController controller;
+
+  @override
+  _PessoaPageCrudState createState() => _PessoaPageCrudState();
+}
+
+class _PessoaPageCrudState extends State<PessoaPageCrud> {
   @override
   Widget build(BuildContext context) {
+    PessoaController controller = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pessoa"),
+        title: Text("Cadrastro de pessoa"),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(

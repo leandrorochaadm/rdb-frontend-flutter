@@ -14,10 +14,18 @@ abstract class _PessoaControllerBase with Store {
   }
 
   @observable
-  ObservableFuture<List<PessoaModel>> listPessoas;
+  ObservableList<PessoaModel> _listPessoas;
+  // List<PessoaModel> listPessoas = [];
 
   @action
-  void setListPessoas() => listPessoas = repository.getPessoa().asObservable();
+  //void setListPessoas() => listPessoas = repository.getPessoa().asObservable();
+  Future<void> setListPessoas() async {
+    _listPessoas = ObservableList<PessoaModel>.of(await repository.getPessoa());
+    // print("controller: $_listPessoas");
+  }
+
+  @computed
+  List<PessoaModel> get listPessoas => _listPessoas;
 
   @observable
   String _nome = '';
@@ -47,7 +55,7 @@ abstract class _PessoaControllerBase with Store {
 
   @computed
   bool get senhaIsValid => _senha.trim().length > 3;
-  String get senhaError => senhaIsValid == true ? null : "Senha inválido";
+  String get senhaError => senhaIsValid == true ? null : "Senha inválida";
 
   @observable
   String _telefone = '';
@@ -56,7 +64,7 @@ abstract class _PessoaControllerBase with Store {
   void setTelefone(String value) => _telefone = value;
 
   @computed
-  bool get telefoneIsValid => _telefone.trim().length > 3;
+  bool get telefoneIsValid => _telefone.trim().length > 7;
   String get telefoneError =>
       telefoneIsValid == true ? null : "Telefone inválido";
 
@@ -65,16 +73,16 @@ abstract class _PessoaControllerBase with Store {
       nomeIsValid && emailIsValid && senhaIsValid && telefoneIsValid;
 
   @action
-  void SavePessoa() {
+  Future<void> SavePessoa() async {
     if (allValid) {
-      repository.setPessoa(PessoaModel(
+      await repository.setPessoa(PessoaModel(
         email: _email,
-        id: null,
+        //id: null,
         nome: _nome,
         senha: _senha,
         telefone: _telefone,
       ));
+      await setListPessoas();
     }
-    setListPessoas();
   }
 }

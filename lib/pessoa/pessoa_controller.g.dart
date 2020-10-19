@@ -9,6 +9,13 @@ part of 'pessoa_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PessoaController on _PessoaControllerBase, Store {
+  Computed<List<PessoaModel>> _$listPessoasComputed;
+
+  @override
+  List<PessoaModel> get listPessoas => (_$listPessoasComputed ??=
+          Computed<List<PessoaModel>>(() => super.listPessoas,
+              name: '_PessoaControllerBase.listPessoas'))
+      .value;
   Computed<bool> _$nomeIsValidComputed;
 
   @override
@@ -45,18 +52,18 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
               name: '_PessoaControllerBase.allValid'))
           .value;
 
-  final _$listPessoasAtom = Atom(name: '_PessoaControllerBase.listPessoas');
+  final _$_listPessoasAtom = Atom(name: '_PessoaControllerBase._listPessoas');
 
   @override
-  ObservableFuture<List<PessoaModel>> get listPessoas {
-    _$listPessoasAtom.reportRead();
-    return super.listPessoas;
+  ObservableList<PessoaModel> get _listPessoas {
+    _$_listPessoasAtom.reportRead();
+    return super._listPessoas;
   }
 
   @override
-  set listPessoas(ObservableFuture<List<PessoaModel>> value) {
-    _$listPessoasAtom.reportWrite(value, super.listPessoas, () {
-      super.listPessoas = value;
+  set _listPessoas(ObservableList<PessoaModel> value) {
+    _$_listPessoasAtom.reportWrite(value, super._listPessoas, () {
+      super._listPessoas = value;
     });
   }
 
@@ -120,19 +127,24 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
     });
   }
 
-  final _$_PessoaControllerBaseActionController =
-      ActionController(name: '_PessoaControllerBase');
+  final _$setListPessoasAsyncAction =
+      AsyncAction('_PessoaControllerBase.setListPessoas');
 
   @override
-  void setListPessoas() {
-    final _$actionInfo = _$_PessoaControllerBaseActionController.startAction(
-        name: '_PessoaControllerBase.setListPessoas');
-    try {
-      return super.setListPessoas();
-    } finally {
-      _$_PessoaControllerBaseActionController.endAction(_$actionInfo);
-    }
+  Future<void> setListPessoas() {
+    return _$setListPessoasAsyncAction.run(() => super.setListPessoas());
   }
+
+  final _$SavePessoaAsyncAction =
+      AsyncAction('_PessoaControllerBase.SavePessoa');
+
+  @override
+  Future<void> SavePessoa() {
+    return _$SavePessoaAsyncAction.run(() => super.SavePessoa());
+  }
+
+  final _$_PessoaControllerBaseActionController =
+      ActionController(name: '_PessoaControllerBase');
 
   @override
   void setNome(String value) {
@@ -173,17 +185,6 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
         name: '_PessoaControllerBase.setTelefone');
     try {
       return super.setTelefone(value);
-    } finally {
-      _$_PessoaControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void SavePessoa() {
-    final _$actionInfo = _$_PessoaControllerBaseActionController.startAction(
-        name: '_PessoaControllerBase.SavePessoa');
-    try {
-      return super.SavePessoa();
     } finally {
       _$_PessoaControllerBaseActionController.endAction(_$actionInfo);
     }

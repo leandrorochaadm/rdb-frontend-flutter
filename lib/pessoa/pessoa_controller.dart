@@ -28,6 +28,12 @@ abstract class _PessoaControllerBase with Store {
   List<PessoaModel> get listPessoas => _listPessoas;
 
   @observable
+  int _id;
+
+  @action
+  void setId(int value) => _id = value;
+
+  @observable
   String _nome = '';
 
   @action
@@ -74,18 +80,27 @@ abstract class _PessoaControllerBase with Store {
 
   @action
   Future<bool> savePessoa() async {
-    var status = false;
-    if (allValid) {
-      status = await repository.setPessoa(PessoaModel(
+    return await repository.setPessoa(
+      PessoaModel(
         email: _email,
-        //id: null,
         nome: _nome,
         senha: _senha,
         telefone: _telefone,
-      ));
-      await setListPessoas();
-    }
-    return status;
+      ),
+    );
+  }
+
+  @action
+  Future<bool> updatePessoa() async {
+    return await repository.updatePessoa(
+      PessoaModel(
+        id: _id,
+        email: _email,
+        nome: _nome,
+        senha: _senha,
+        telefone: _telefone,
+      ),
+    );
   }
 
   @action

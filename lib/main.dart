@@ -28,6 +28,8 @@ class MyApp extends StatelessWidget {
         routes: {
           PessoaPageList.tag: (context) => PessoaPageList(),
           PessoaPageCrud.tag: (context) => PessoaPageCrud(),
+          PessoaPageCrud.tag + "Params": (context) =>
+              PessoaPageCrud(pessoa: ModalRoute.of(context).settings.arguments),
         },
       ),
     );

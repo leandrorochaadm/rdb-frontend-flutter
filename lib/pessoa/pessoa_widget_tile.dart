@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rdb/pessoa/pessoa_controller.dart';
 import 'package:rdb/pessoa/pessoa_model.dart';
+import 'package:rdb/pessoa/pessoa_page_crud.dart';
 
 class PessoaTile extends StatelessWidget {
   const PessoaTile(this.pessoa, {Key key}) : super(key: key);
@@ -11,6 +12,10 @@ class PessoaTile extends StatelessWidget {
   Widget build(BuildContext context) {
     PessoaController controller = Provider.of(context);
     return ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, PessoaPageCrud.tag + "Params",
+            arguments: pessoa);
+      },
       onLongPress: () {
         controller.deletePessoa(pessoa);
       },

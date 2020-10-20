@@ -31,6 +31,19 @@ class PessoaRepository {
     }
   }
 
+  Future<bool> updatePessoa(PessoaModel pessoa) async {
+    print("Update pessoa: ${pessoa.toString()}");
+    try {
+      Response response = await dio.put(
+          'http://localhost:8080/pessoas/${pessoa.id}',
+          data: pessoa.toJson());
+      return response.statusCode == 202;
+    } catch (e) {
+      print("Erro put pessoa: $e");
+      return false;
+    }
+  }
+
   Future<bool> deletePessoa(PessoaModel pessoa) async {
     // print("delete: $pessoa");
     Response response =

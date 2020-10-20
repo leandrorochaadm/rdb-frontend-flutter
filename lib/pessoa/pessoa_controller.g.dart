@@ -67,6 +67,21 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
     });
   }
 
+  final _$_idAtom = Atom(name: '_PessoaControllerBase._id');
+
+  @override
+  int get _id {
+    _$_idAtom.reportRead();
+    return super._id;
+  }
+
+  @override
+  set _id(int value) {
+    _$_idAtom.reportWrite(value, super._id, () {
+      super._id = value;
+    });
+  }
+
   final _$_nomeAtom = Atom(name: '_PessoaControllerBase._nome');
 
   @override
@@ -143,6 +158,14 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
     return _$savePessoaAsyncAction.run(() => super.savePessoa());
   }
 
+  final _$updatePessoaAsyncAction =
+      AsyncAction('_PessoaControllerBase.updatePessoa');
+
+  @override
+  Future<bool> updatePessoa() {
+    return _$updatePessoaAsyncAction.run(() => super.updatePessoa());
+  }
+
   final _$deletePessoaAsyncAction =
       AsyncAction('_PessoaControllerBase.deletePessoa');
 
@@ -153,6 +176,17 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
 
   final _$_PessoaControllerBaseActionController =
       ActionController(name: '_PessoaControllerBase');
+
+  @override
+  void setId(int value) {
+    final _$actionInfo = _$_PessoaControllerBaseActionController.startAction(
+        name: '_PessoaControllerBase.setId');
+    try {
+      return super.setId(value);
+    } finally {
+      _$_PessoaControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void setNome(String value) {

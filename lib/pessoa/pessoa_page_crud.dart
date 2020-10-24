@@ -18,7 +18,7 @@ class _PessoaPageCrudState extends State<PessoaPageCrud> {
   @override
   Widget build(BuildContext context) {
     PessoaController controller = Provider.of(context);
-    if (widget.pessoa.id != null) {
+    if (widget.pessoa?.id != null) {
       controller.setId(widget.pessoa.id);
     }
     return Scaffold(
@@ -30,13 +30,13 @@ class _PessoaPageCrudState extends State<PessoaPageCrud> {
         onPressed: () async {
           bool salvo = false;
 
-          if (widget.pessoa.id != null) {
+          if (widget.pessoa?.id != null) {
             salvo = await controller.updatePessoa();
           } else {
             salvo = await controller.savePessoa();
           }
 
-          if (salvo) {
+          if (salvo == true) {
             Navigator.pop(context);
           }
         },

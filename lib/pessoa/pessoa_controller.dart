@@ -33,6 +33,9 @@ abstract class _PessoaControllerBase with Store {
   @action
   void setId(int value) => _id = value;
 
+  @computed
+  int get id => _id;
+
   @observable
   String _nome = '';
 
@@ -80,7 +83,7 @@ abstract class _PessoaControllerBase with Store {
 
   @action
   Future<bool> savePessoa() async {
-    return await repository.setPessoa(
+    bool status = await repository.setPessoa(
       PessoaModel(
         email: _email,
         nome: _nome,
@@ -88,11 +91,13 @@ abstract class _PessoaControllerBase with Store {
         telefone: _telefone,
       ),
     );
+    await setListPessoas();
+    return status;
   }
 
   @action
   Future<bool> updatePessoa() async {
-    return await repository.updatePessoa(
+    bool status = await repository.updatePessoa(
       PessoaModel(
         id: _id,
         email: _email,
@@ -101,6 +106,8 @@ abstract class _PessoaControllerBase with Store {
         telefone: _telefone,
       ),
     );
+    await setListPessoas();
+    return status;
   }
 
   @action

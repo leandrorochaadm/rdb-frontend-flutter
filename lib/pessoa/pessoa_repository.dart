@@ -37,7 +37,7 @@ class PessoaRepository {
       Response response = await dio.put(
           'http://localhost:8080/pessoas/${pessoa.id}',
           data: pessoa.toJson());
-      return response.statusCode == 202;
+      return response.statusCode == 200;
     } catch (e) {
       print("Erro put pessoa: $e");
       return false;

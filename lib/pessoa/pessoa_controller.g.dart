@@ -16,6 +16,12 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
           Computed<List<PessoaModel>>(() => super.listPessoas,
               name: '_PessoaControllerBase.listPessoas'))
       .value;
+  Computed<int> _$idComputed;
+
+  @override
+  int get id => (_$idComputed ??=
+          Computed<int>(() => super.id, name: '_PessoaControllerBase.id'))
+      .value;
   Computed<bool> _$nomeIsValidComputed;
 
   @override
@@ -236,6 +242,7 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
   String toString() {
     return '''
 listPessoas: ${listPessoas},
+id: ${id},
 nomeIsValid: ${nomeIsValid},
 emailIsValid: ${emailIsValid},
 senhaIsValid: ${senhaIsValid},

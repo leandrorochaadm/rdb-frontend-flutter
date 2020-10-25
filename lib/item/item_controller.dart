@@ -15,13 +15,23 @@ abstract class _ItemControllerBase with Store {
 
   @observable
   ObservableList<ItemModel> _listItem;
-  // List<ItemModel> listPessoas = [];
 
   @action
-  //void setListPessoas() => listPessoas = repository.getPessoa().asObservable();
+  void limparCampos() {
+    _ativo = true;
+    _id = null;
+    _nome = "";
+    _valor = 0;
+  }
+
+  @action
   Future<void> setListItem() async {
     _listItem = ObservableList<ItemModel>.of(await repository.getItem());
-    // print("controller: $_listPessoas");
+  }
+
+  Future<void> atualizarDados() async {
+    limparCampos();
+    await setListItem();
   }
 
   @computed
@@ -43,6 +53,7 @@ abstract class _ItemControllerBase with Store {
   void setNome(String value) => _nome = value;
 
   @computed
+  String get nome => _nome;
   bool get nomeIsValid => _nome.trim().length > 3;
   String get nomeError => nomeIsValid == true ? null : "Nome inválido";
 
@@ -53,11 +64,12 @@ abstract class _ItemControllerBase with Store {
   void setValor(String value) => _valor = double.parse(value);
 
   @computed
-  bool get valorIsValid => _valor >= 0;
+  String get valor => _valor.toString();
+  bool get valorIsValid => _valor > 0;
   String get valorError => valorIsValid == true ? null : "Valor inválido";
 
   @observable
-  bool _ativo = false;
+  bool _ativo = true;
 
   @action
   void setAtivo(bool value) => _ativo = value;
@@ -77,7 +89,7 @@ abstract class _ItemControllerBase with Store {
         valorReferencia: _valor,
       ),
     );
-    await setListItem();
+    await atualizarDados();
     return status;
   }
 
@@ -91,7 +103,7 @@ abstract class _ItemControllerBase with Store {
         valorReferencia: _valor,
       ),
     );
-    await setListItem();
+    await atualizarDados();
     return status;
   }
 
@@ -99,7 +111,7 @@ abstract class _ItemControllerBase with Store {
   Future<bool> deleteItem(ItemModel item) async {
     var status = false;
     status = await repository.deleteItem(item);
-    await setListItem();
+    await atualizarDados();
     return status;
   }
 }

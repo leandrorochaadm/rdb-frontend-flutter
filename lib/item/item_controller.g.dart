@@ -22,20 +22,18 @@ mixin _$ItemController on _ItemControllerBase, Store {
   int get id => (_$idComputed ??=
           Computed<int>(() => super.id, name: '_ItemControllerBase.id'))
       .value;
-  Computed<bool> _$nomeIsValidComputed;
+  Computed<String> _$nomeComputed;
 
   @override
-  bool get nomeIsValid =>
-      (_$nomeIsValidComputed ??= Computed<bool>(() => super.nomeIsValid,
-              name: '_ItemControllerBase.nomeIsValid'))
-          .value;
-  Computed<bool> _$valorIsValidComputed;
+  String get nome => (_$nomeComputed ??=
+          Computed<String>(() => super.nome, name: '_ItemControllerBase.nome'))
+      .value;
+  Computed<String> _$valorComputed;
 
   @override
-  bool get valorIsValid =>
-      (_$valorIsValidComputed ??= Computed<bool>(() => super.valorIsValid,
-              name: '_ItemControllerBase.valorIsValid'))
-          .value;
+  String get valor => (_$valorComputed ??= Computed<String>(() => super.valor,
+          name: '_ItemControllerBase.valor'))
+      .value;
   Computed<bool> _$ativoComputed;
 
   @override
@@ -158,6 +156,17 @@ mixin _$ItemController on _ItemControllerBase, Store {
       ActionController(name: '_ItemControllerBase');
 
   @override
+  void limparCampos() {
+    final _$actionInfo = _$_ItemControllerBaseActionController.startAction(
+        name: '_ItemControllerBase.limparCampos');
+    try {
+      return super.limparCampos();
+    } finally {
+      _$_ItemControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setId(int value) {
     final _$actionInfo = _$_ItemControllerBaseActionController.startAction(
         name: '_ItemControllerBase.setId');
@@ -206,8 +215,8 @@ mixin _$ItemController on _ItemControllerBase, Store {
     return '''
 listItem: ${listItem},
 id: ${id},
-nomeIsValid: ${nomeIsValid},
-valorIsValid: ${valorIsValid},
+nome: ${nome},
+valor: ${valor},
 ativo: ${ativo},
 allValid: ${allValid}
     ''';

@@ -28,11 +28,11 @@ class ItemTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            item.ativo.toString(),
+            item.ativo == true ? "Ativo" : "Inativo",
             style: TextStyle(fontStyle: FontStyle.italic),
           ),
           Text(
-            item.autor.toString(),
+            item.valorReferencia.toStringAsFixed(2),
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],

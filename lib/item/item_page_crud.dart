@@ -22,6 +22,9 @@ class _ItemPageCrudState extends State<ItemPageCrud> {
     ItemController controller = Provider.of(context);
     if (widget.item?.id != null) {
       controller.setId(widget.item.id);
+      controller.setAtivo(widget.item.ativo);
+      controller.setValor(widget.item.valorReferencia.toString());
+      controller.setNome(widget.item.nome);
     }
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +54,7 @@ class _ItemPageCrudState extends State<ItemPageCrud> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: TextFormField(
-                initialValue: widget.item?.nome,
+                initialValue: controller.nome,
                 onChanged: controller.setNome,
                 decoration: InputDecoration(
                     labelText: "Nome", errorText: controller.nomeError),
@@ -60,7 +63,7 @@ class _ItemPageCrudState extends State<ItemPageCrud> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: TextFormField(
-                initialValue: widget.item?.valorReferencia.toString(),
+                initialValue: controller.valor,
                 onChanged: controller.setValor,
                 decoration: InputDecoration(
                     labelText: "Valor", errorText: controller.valorError),
@@ -68,21 +71,12 @@ class _ItemPageCrudState extends State<ItemPageCrud> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: Checkbox(
+              child: CheckboxListTile(
+                title: Text("Ativo"),
                 onChanged: controller.setAtivo,
                 value: controller.ativo,
               ),
             )
-            /*  Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: TextFormField(
-                initialValue: widget.item?.ativo.toString(),
-                onChanged: null,
-                decoration: InputDecoration(
-                  labelText: "Ativo",
-                ),
-              ),
-            ),*/
           ],
         );
       }),

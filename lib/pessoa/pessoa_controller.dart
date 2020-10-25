@@ -111,7 +111,7 @@ abstract class _PessoaControllerBase with Store {
   }
 
   @action
-  Future<bool> deletePessoa(PessoaModel pessoa) async {
+  Future<bool> deleteItem(PessoaModel pessoa) async {
     var status = false;
     status = await repository.deletePessoa(pessoa);
     await setListPessoas();

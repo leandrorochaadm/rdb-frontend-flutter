@@ -172,12 +172,12 @@ mixin _$PessoaController on _PessoaControllerBase, Store {
     return _$updatePessoaAsyncAction.run(() => super.updatePessoa());
   }
 
-  final _$deletePessoaAsyncAction =
-      AsyncAction('_PessoaControllerBase.deletePessoa');
+  final _$deleteItemAsyncAction =
+      AsyncAction('_PessoaControllerBase.deleteItem');
 
   @override
-  Future<bool> deletePessoa(PessoaModel pessoa) {
-    return _$deletePessoaAsyncAction.run(() => super.deletePessoa(pessoa));
+  Future<bool> deleteItem(PessoaModel pessoa) {
+    return _$deleteItemAsyncAction.run(() => super.deleteItem(pessoa));
   }
 
   final _$_PessoaControllerBaseActionController =

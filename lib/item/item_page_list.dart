@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:rdb/pessoa/pessoa_controller.dart';
-import 'package:rdb/pessoa/pessoa_page_crud.dart';
-import 'package:rdb/pessoa/pessoa_widget_tile.dart';
+import 'package:rdb/item/item_controller.dart';
+import 'package:rdb/item/item_model.dart';
+import 'package:rdb/item/item_page_crud.dart';
+import 'package:rdb/item/item_widget_tile.dart';
 
-class PessoaPageList extends StatefulWidget {
-  const PessoaPageList({Key key}) : super(key: key);
+class ItemPageList extends StatefulWidget {
+  const ItemPageList({Key key}) : super(key: key);
 
-  static final tag = "pessoalist";
+  static final tag = "itemList";
 
   @override
-  _PessoaPageListState createState() => _PessoaPageListState();
+  _ItemPageListState createState() => _ItemPageListState();
 }
 
-class _PessoaPageListState extends State<PessoaPageList> {
+class _ItemPageListState extends State<ItemPageList> {
   @override
   Widget build(BuildContext context) {
-    PessoaController controller = Provider.of(context);
+    ItemController controller = Provider.of(context);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed(PessoaPageCrud.tag);
+          Navigator.of(context).pushNamed(ItemPageCrud.tag);
         },
         child: Icon(Icons.add),
       ),
       body: Observer(builder: (_) {
-        var list = controller.listPessoas;
+        var list = controller.listItem;
 
         /* if (list.error != null) {
           return Center(
@@ -42,8 +43,8 @@ class _PessoaPageListState extends State<PessoaPageList> {
         return ListView.builder(
           itemCount: list.length,
           itemBuilder: (_, index) {
-            var pessoa = list[index];
-            return PessoaTile(pessoa);
+            ItemModel item = list[index];
+            return ItemTile(item);
           },
         );
       }),

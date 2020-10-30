@@ -21,6 +21,10 @@ class _ItemPageListState extends State<ItemPageList> {
     ItemController controller = Provider.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Itens Doação"),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed(ItemPageCrud.tag);

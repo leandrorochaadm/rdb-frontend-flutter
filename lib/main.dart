@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:rdb/home/home_page.dart';
 import 'package:rdb/item/item_page_list.dart';
 
 import 'item/item_controller.dart';
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.orange,
+          buttonTheme: ButtonThemeData(buttonColor: Colors.orange),
         ),
-        initialRoute: ItemPageList.tag,
+        initialRoute: HomePage.tag,
         routes: {
           PessoaPageList.tag: (context) => PessoaPageList(),
           PessoaPageCrud.tag: (context) => PessoaPageCrud(),
@@ -42,6 +44,7 @@ class MyApp extends StatelessWidget {
           ItemPageCrud.tag + "Params": (context) => ItemPageCrud(
                 item: ModalRoute.of(context).settings.arguments,
               ),
+          HomePage.tag: (context) => HomePage(),
         },
       ),
     );

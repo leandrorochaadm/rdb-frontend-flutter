@@ -20,6 +20,10 @@ class _PessoaPageListState extends State<PessoaPageList> {
     PessoaController controller = Provider.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Pessoa"),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed(PessoaPageCrud.tag);

@@ -9,36 +9,25 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget buttonHome(String pageRoute, String textButton) {
+      return Container(
+        height: 60,
+        width: 180,
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(pageRoute);
+          },
+          child: Text(textButton),
+        ),
+      );
+    }
+
     return Material(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              height: 60,
-              width: 180,
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(PessoaPageList.tag);
-                },
-                child: Text("Lista de pessoa"),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              height: 60,
-              width: 180,
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(ItemPageList.tag);
-                },
-                child: Text("Lista de itens doação"),
-              ),
-            ),
-          ),
+          buttonHome(PessoaPageList.tag, "Lista de pessoa"),
+          buttonHome(ItemPageList.tag, "Lista de itens"),
         ],
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:rdb/cart/cart_manager.dart';
+import 'package:rdb/cart/cart_page.dart';
 import 'package:rdb/home/home_page.dart';
 import 'package:rdb/item/item_page_list.dart';
 
@@ -24,13 +26,17 @@ class MyApp extends StatelessWidget {
         Provider<PessoaController>.value(
             value: PessoaController(PessoaRepository())),
         Provider<ItemController>.value(value: ItemController(ItemRepository())),
+        Provider(
+          create: (_) => CartManager(),
+          lazy: false,
+        ),
       ],
       child: MaterialApp(
         title: 'Rueiros do Bem',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.orange,
-          buttonTheme: ButtonThemeData(buttonColor: Colors.orange),
+          buttonColor: Colors.orange,
         ),
         initialRoute: HomePage.tag,
         routes: {
@@ -45,6 +51,7 @@ class MyApp extends StatelessWidget {
                 item: ModalRoute.of(context).settings.arguments,
               ),
           HomePage.tag: (context) => HomePage(),
+          CartPage.tag: (context) => CartPage(),
         },
       ),
     );

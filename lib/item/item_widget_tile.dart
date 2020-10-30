@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rdb/cart/cart_manager.dart';
+import 'package:rdb/cart/cart_page.dart';
 
 import 'item_controller.dart';
 import 'item_model.dart';
@@ -17,6 +19,15 @@ class ItemTile extends StatelessWidget {
         Navigator.pushNamed(context, ItemPageCrud.tag + "Params",
             arguments: item);
       },
+      trailing: IconButton(
+        icon: Icon(
+          Icons.shopping_cart,
+        ),
+        onPressed: () {
+          context.read<CartManager>().addToCart(item);
+          Navigator.of(context).pushNamed(CartPage.tag);
+        },
+      ),
       onLongPress: () {
         controller.deleteItem(item);
       },
@@ -25,7 +36,7 @@ class ItemTile extends StatelessWidget {
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
       subtitle: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
             item.ativo == true ? "Ativo" : "Inativo",

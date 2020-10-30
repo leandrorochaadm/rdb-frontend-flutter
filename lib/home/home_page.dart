@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rdb/cart/cart_page.dart';
 import 'package:rdb/item/item_page_list.dart';
 import 'package:rdb/pessoa/pessoa_page_list.dart';
 
@@ -26,7 +27,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          buttonHome(PessoaPageList.tag, "Lista de pessoa"),
+          buttonHome(PessoaPageList.tag, "Lista de pessoas"),
           buttonHome(ItemPageList.tag, "Lista de itens"),
         ],
       ),

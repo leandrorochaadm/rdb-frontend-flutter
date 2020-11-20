@@ -49,4 +49,10 @@ class PessoaRepository {
     Response response =
         await dio.delete('http://localhost:8080/pessoas/${pessoa.id}');
   }
+
+  Future<bool> login(String email, String senha) async {
+    Response response = await dio
+        .get('http://localhost:8080/pessoas/login?email=$email&senha=$senha');
+    return response.statusCode == 200 ? true : false;
+  }
 }

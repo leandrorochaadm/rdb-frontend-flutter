@@ -10,4 +10,9 @@ class CartItem {
   int quantity;
 
   ItemModel item;
+
+  num get valor {
+    if (item == null) return 0;
+    return item?.valorReferencia ?? 0;
+  }
 }

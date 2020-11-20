@@ -32,7 +32,7 @@ class CartCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: Text(
-                        "Valor de Referência: R\$ ${cartItem.item.valorReferencia.toStringAsFixed(2)}",
+                        "Valor de Referência: R\$ ${cartItem.valor.toStringAsFixed(2)}",
                         style: TextStyle(fontSize: 17),
                       ),
                     )

@@ -5,10 +5,12 @@ import 'package:rdb/cart/cart_manager.dart';
 import 'package:rdb/cart/cart_page.dart';
 import 'package:rdb/home/home_page.dart';
 import 'package:rdb/item/item_page_list.dart';
+import 'package:rdb/login/login_controller.dart';
 
 import 'item/item_controller.dart';
 import 'item/item_page_crud.dart';
 import 'item/item_repository.dart';
+import 'login/login_page.dart';
 import 'pessoa/pessoa_controller.dart';
 import 'pessoa/pessoa_page_crud.dart';
 import 'pessoa/pessoa_page_list.dart';
@@ -25,6 +27,10 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider<PessoaController>.value(
             value: PessoaController(PessoaRepository())),
+        Provider(
+          create: (_) => LoginController(),
+          lazy: false,
+        ),
         Provider<ItemController>.value(value: ItemController(ItemRepository())),
         Provider(
           create: (_) => CartManager(),
@@ -38,7 +44,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.orange,
           buttonColor: Colors.orange,
         ),
-        initialRoute: HomePage.tag,
+        initialRoute: LoginPage.tag,
         routes: {
           PessoaPageList.tag: (context) => PessoaPageList(),
           PessoaPageCrud.tag: (context) => PessoaPageCrud(),
@@ -52,6 +58,7 @@ class MyApp extends StatelessWidget {
               ),
           HomePage.tag: (context) => HomePage(),
           CartPage.tag: (context) => CartPage(),
+          LoginPage.tag: (context) => LoginPage(),
         },
       ),
     );

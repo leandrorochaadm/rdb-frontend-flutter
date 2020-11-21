@@ -3,29 +3,35 @@ import 'package:rdb/item/item_model.dart';
 import 'package:rdb/pessoa/pessoa_model.dart';
 
 class ItemRepository {
-  var dio = Dio();
+  Dio dio;
+
+  BaseOptions _options = BaseOptions(
+    baseUrl: "http://localhost:8080",
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
 
   ItemRepository() {
+    this.dio = Dio(_options);
     listItem();
   }
 
   Future<List<ItemModel>> listItem() async {
-    /* Response response = await dio.get('http://localhost:8080/itens');
+    Response response = await dio.get('/itens');
     List<ItemModel> list = [];
     for (var json in (response.data as List)) {
       list.add(ItemModel.fromMap(json));
       //print(json);
     }
     //  print("repository: $list");
-     return list;*/
-    return listMocados();
+    return list;
+    // return listMocados();
   }
 
   Future<bool> setItem(ItemModel item) async {
     print("Salvar item: ${item.toString()}");
     try {
-      Response response =
-          await dio.post('http://localhost:8080/itens', data: item.toJson());
+      Response response = await dio.post('/itens', data: item.toJson());
       return response.statusCode == 201;
     } catch (e) {
       print("Erro post item: $e");
@@ -36,9 +42,9 @@ class ItemRepository {
   Future<bool> updateItem(ItemModel item) async {
     print("Update item: ${item.toString()}");
     try {
-      Response response = await dio
-          .put('http://localhost:8080/itens/${item.id}', data: item.toJson());
-      return response.statusCode == 200;
+      Response response =
+          await dio.put('/itens/${item.id}', data: item.toJson());
+      return response.statusCode == 202;
     } catch (e) {
       print("Erro put item: $e");
       return false;
@@ -47,8 +53,7 @@ class ItemRepository {
 
   Future<bool> deleteItem(ItemModel item) async {
     // print("delete: $item");
-    Response response =
-        await dio.delete('http://localhost:8080/itens/${item.id}');
+    Response response = await dio.delete('/itens/${item.id}');
   }
 
   List<ItemModel> listMocados() {

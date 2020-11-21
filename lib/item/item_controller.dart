@@ -61,7 +61,7 @@ abstract class _ItemControllerBase with Store {
   double _valor = 0;
 
   @action
-  void setValor(String value) => _valor = double.parse(value);
+  void setValor(String value) => _valor = double.tryParse(value ?? 0);
 
   @computed
   String get valor => _valor.toString();

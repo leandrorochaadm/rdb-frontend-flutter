@@ -48,7 +48,7 @@ class _ItemPageListState extends State<ItemPageList> {
           itemCount: list.length,
           itemBuilder: (_, index) {
             ItemModel item = list[index];
-            return ItemTile(item);
+            return ItemTile(item: item);
           },
         );
       }),

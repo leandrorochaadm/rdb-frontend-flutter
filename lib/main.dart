@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.orange,
           buttonColor: Colors.orange,
+          disabledColor: Colors.grey[400],
         ),
         initialRoute: CartPage.tag,
         routes: {

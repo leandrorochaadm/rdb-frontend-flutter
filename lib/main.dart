@@ -32,10 +32,12 @@ class MyApp extends StatelessWidget {
           lazy: false,
         ),
         Provider<ItemController>.value(value: ItemController(ItemRepository())),
-        Provider(
+        ProxyProvider<LoginController, CartManager>(
           create: (_) => CartManager(),
           lazy: false,
-        ),
+          update: (_, loginController, cartManager) =>
+              cartManager..updateUser(loginController),
+        )
       ],
       child: MaterialApp(
         title: 'Rueiros do Bem',
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.orange,
           buttonColor: Colors.orange,
         ),
-        initialRoute: LoginPage.tag,
+        initialRoute: CartPage.tag,
         routes: {
           PessoaPageList.tag: (context) => PessoaPageList(),
           PessoaPageCrud.tag: (context) => PessoaPageCrud(),

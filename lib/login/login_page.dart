@@ -160,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
       backgroundColor: Colors.redAccent,
       content: Text(
-        "Falha ao entrar, verifique a senha e o email.",
+        "Falha ao entrar!\nVerifique a senha e o email.",
         style: TextStyle(color: Colors.white),
       ),
       duration: Duration(seconds: 2),

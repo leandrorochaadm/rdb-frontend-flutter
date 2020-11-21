@@ -26,7 +26,7 @@ abstract class _ItemControllerBase with Store {
 
   @action
   Future<void> setListItem() async {
-    _listItem = ObservableList<ItemModel>.of(await repository.getItem());
+    _listItem = ObservableList<ItemModel>.of(await repository.listItem());
   }
 
   Future<void> atualizarDados() async {

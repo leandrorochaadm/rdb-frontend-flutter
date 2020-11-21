@@ -1,22 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:rdb/item/item_model.dart';
+import 'package:rdb/pessoa/pessoa_model.dart';
 
 class ItemRepository {
   var dio = Dio();
 
   ItemRepository() {
-    getItem();
+    listItem();
   }
 
-  Future<List<ItemModel>> getItem() async {
-    Response response = await dio.get('http://localhost:8080/itens');
+  Future<List<ItemModel>> listItem() async {
+    /* Response response = await dio.get('http://localhost:8080/itens');
     List<ItemModel> list = [];
     for (var json in (response.data as List)) {
       list.add(ItemModel.fromMap(json));
       //print(json);
     }
     //  print("repository: $list");
-    return list;
+     return list;*/
+    return listMocados();
   }
 
   Future<bool> setItem(ItemModel item) async {
@@ -47,5 +49,41 @@ class ItemRepository {
     // print("delete: $item");
     Response response =
         await dio.delete('http://localhost:8080/itens/${item.id}');
+  }
+
+  List<ItemModel> listMocados() {
+    PessoaModel pessoaModel = PessoaModel(
+        id: 1,
+        email: "leandro@user.com",
+        nome: "Leandro",
+        senha: "1234",
+        telefone: "123456");
+
+    return List.of([
+      ItemModel(
+        id: 1,
+        valorReferencia: 10,
+        nome: "produto1",
+        ativo: true,
+        autor: pessoaModel,
+        dataCriacao: DateTime.now(),
+      ),
+      ItemModel(
+        id: 1,
+        valorReferencia: 33,
+        nome: "produto2",
+        ativo: true,
+        autor: pessoaModel,
+        dataCriacao: DateTime.now(),
+      ),
+      ItemModel(
+        id: 1,
+        valorReferencia: 51,
+        nome: "produto3",
+        ativo: true,
+        autor: pessoaModel,
+        dataCriacao: DateTime.now(),
+      ),
+    ]);
   }
 }

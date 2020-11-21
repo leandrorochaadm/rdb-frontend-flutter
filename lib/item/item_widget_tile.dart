@@ -21,44 +21,50 @@ class ItemTile extends StatelessWidget {
         ? Theme.of(context).primaryColor
         : Theme.of(context).disabledColor;
 
-    return ListTile(
-      onTap: () {
-        Navigator.pushNamed(context, ItemPageCrud.tag + "Params",
-            arguments: item);
-      },
-      trailing: IconButton(
-        icon: Icon(
-          Icons.shopping_cart,
-          color: _color,
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).primaryColor),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListTile(
+        isThreeLine: true,
+        hoverColor: Theme.of(context).primaryColor.withAlpha(60),
+        onTap: () {
+          Navigator.pushNamed(context, ItemPageCrud.tag + "Params",
+              arguments: item);
+        },
+        trailing: IconButton(
+          icon: Icon(
+            Icons.shopping_cart,
+            color: _color,
+          ),
+          onPressed: item.ativo == true
+              ? () {
+                  context.read<CartManager>().addToCart(item);
+                  Navigator.of(context).pushNamed(CartPage.tag);
+                }
+              : null,
         ),
-        onPressed: item.ativo == true
-            ? () {
-                context.read<CartManager>().addToCart(item);
-                Navigator.of(context).pushNamed(CartPage.tag);
-              }
-            : null,
-      ),
-      onLongPress: () {
-        //TODO: criar msg se deseja realmente deletar item
-        controller.deleteItem(item);
-      },
-      title: Text(
-        item.nome,
-        style:
-            TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: _color),
-      ),
-      subtitle: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            item.ativo == true ? "Ativo" : "Inativo",
-            style: TextStyle(fontStyle: FontStyle.italic, color: _color),
-          ),
-          Text(
-            item.valorReferencia.toStringAsFixed(2),
-            style: TextStyle(fontWeight: FontWeight.bold, color: _color),
-          ),
-        ],
+        onLongPress: () {
+          //TODO: criar msg se deseja realmente deletar item
+          controller.deleteItem(item);
+        },
+        title: Text(
+          item.nome,
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: _color),
+        ),
+        subtitle: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              item.valorReferencia.toStringAsFixed(2),
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold, color: _color),
+            ),
+          ],
+        ),
       ),
     );
   }

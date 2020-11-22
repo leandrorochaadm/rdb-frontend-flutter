@@ -29,4 +29,9 @@ class CartItem extends ChangeNotifier {
     quantitade--;
     notifyListeners();
   }
+
+  @override
+  String toString() {
+    return "Item: ${item.nome}, valor: ${item.valorReferencia.toStringAsFixed(2)}, quant: $quantitade";
+  }
 }

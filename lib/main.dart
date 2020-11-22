@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           lazy: false,
         ),
         Provider<ItemController>.value(value: ItemController(ItemRepository())),
-        ProxyProvider<LoginController, CartManager>(
+        ChangeNotifierProxyProvider<LoginController, CartManager>(
           create: (_) => CartManager(),
           lazy: false,
           update: (_, loginController, cartManager) =>

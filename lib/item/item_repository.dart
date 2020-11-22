@@ -28,6 +28,17 @@ class ItemRepository {
     // return listMocados();
   }
 
+  Future<ItemModel> getId(int id) async {
+    Response response;
+    try {
+      response = await dio.get('/itens/$id');
+      return response.data;
+    } catch (e) {
+      print("erro getId: $e");
+      return null;
+    }
+  }
+
   Future<bool> setItem(ItemModel item) async {
     print("Salvar item: ${item.toString()}");
     try {

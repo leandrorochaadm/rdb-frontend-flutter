@@ -21,6 +21,12 @@ class CartManager {
   }
 
   void addToCart(ItemModel item) {
-    items.add(CartItem.fromItem(item));
+    try {
+      final e = items.firstWhere((p) => p.stackable(item));
+      e.quantitade++;
+    } catch (e) {
+      items.add(CartItem.fromItem(item));
+      //TODO: salvar enviar item do carrinho pro backend
+    }
   }
 }

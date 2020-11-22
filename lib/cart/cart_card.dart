@@ -35,13 +35,25 @@ class CartCard extends StatelessWidget {
                         "Valor de Referência: R\$ ${cartItem.valor.toStringAsFixed(2)}",
                         style: TextStyle(fontSize: 17),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
-            //
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
+                    "${cartItem.quantitade}",
+                    style: TextStyle(fontSize: 17),
+                  ),
+                ),
+              ],
+            )
           ],
+
+          //
         ),
       ),
     );

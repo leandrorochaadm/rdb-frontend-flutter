@@ -76,13 +76,7 @@ class ItemModel {
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is ItemModel &&
-        o.id == id &&
-        o.nome == nome &&
-        o.valorReferencia == valorReferencia &&
-        o.ativo == ativo &&
-        o.dataCriacao == dataCriacao &&
-        o.autor == autor;
+    return o is ItemModel && o.id == id;
   }
 
   @override

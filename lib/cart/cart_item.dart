@@ -2,17 +2,20 @@ import 'package:rdb/item/item_model.dart';
 
 class CartItem {
   CartItem.fromItem(this.item) {
-    idItem = item.id;
-    quantity = 1;
+    this.item = item;
+    quantitade = 1;
   }
 
-  int idItem;
-  int quantity;
-
+  int quantitade;
   ItemModel item;
 
+  int get idItem => item.id;
   num get valor {
     if (item == null) return 0;
     return item?.valorReferencia ?? 0;
+  }
+
+  bool stackable(ItemModel itemModel) {
+    return itemModel.id == idItem;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:rdb/cart/cart_item.dart';
 import 'package:rdb/item/item_model.dart';
 import 'package:rdb/login/login_controller.dart';
@@ -19,8 +20,10 @@ class CartManager extends ChangeNotifier {
   }
 
   _loadCartItems() {
+    total = 0;
     //carregar carrinho desse usuario
     _onItemUpdated();
+    //notifyListeners();
   }
 
   void addToCart(ItemModel item) {
@@ -54,7 +57,7 @@ class CartManager extends ChangeNotifier {
 
       _updateCartItem(cartItem);
     }
-    print("total: ${total.toStringAsFixed(2)}");
+    notifyListeners();
   }
 
   void _updateCartItem(CartItem cartItem) {

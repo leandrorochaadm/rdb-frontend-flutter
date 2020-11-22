@@ -5,6 +5,7 @@ class CartItem extends ChangeNotifier {
   CartItem.fromItem(this.item) {
     this.item = item;
     quantitade = 1;
+    notifyListeners();
   }
 
   int quantitade;

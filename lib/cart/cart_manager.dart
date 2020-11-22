@@ -7,6 +7,7 @@ import 'package:rdb/pessoa/pessoa_model.dart';
 class CartManager extends ChangeNotifier {
   List<CartItem> items = [];
   PessoaModel user;
+  double total = 0.0;
 
   void updateUser(LoginController loginController) {
     // user = loginController.login;
@@ -30,22 +31,30 @@ class CartManager extends ChangeNotifier {
       final cartItem = CartItem.fromItem(item);
       cartItem.addListener(_onItemUpdated);
       items.add(cartItem);
+      _onItemUpdated(); //atualiza total do pedido
       //TODO: salvar enviar item do carrinho pro backend
     }
   }
 
   void _onItemUpdated() {
+    total = 0.0;
+
     for (int i = 0; i < items.length; i++) {
       final cartItem = items[i];
       print("list: $cartItem");
       if (cartItem.quantitade == 0) {
         removeOfCart(cartItem);
         i--;
+
+        //pra pular o restante do for, e ir pra proxima iteracao
         continue;
       }
 
+      total += cartItem.priceItem;
+
       _updateCartItem(cartItem);
     }
+    print("total: ${total.toStringAsFixed(2)}");
   }
 
   void _updateCartItem(CartItem cartItem) {

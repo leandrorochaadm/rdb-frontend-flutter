@@ -30,6 +30,8 @@ class CartItem extends ChangeNotifier {
     notifyListeners();
   }
 
+  double get priceItem => quantitade * item.valorReferencia;
+
   @override
   String toString() {
     return "Item: ${item.nome}, valor: ${item.valorReferencia.toStringAsFixed(2)}, quant: $quantitade";

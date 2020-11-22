@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:rdb/item/item_model.dart';
 
-class CartItem {
+class CartItem extends ChangeNotifier {
   CartItem.fromItem(this.item) {
     this.item = item;
     quantitade = 1;
@@ -17,5 +18,15 @@ class CartItem {
 
   bool stackable(ItemModel itemModel) {
     return itemModel.id == idItem;
+  }
+
+  void increment() {
+    quantitade++;
+    notifyListeners();
+  }
+
+  void decrement() {
+    quantitade--;
+    notifyListeners();
   }
 }
